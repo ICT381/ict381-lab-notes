@@ -90,6 +90,8 @@ The 3 CSV files can be found in StaycationX > app > assets > js folder.
 
 Before the `staycation.csv` file can be uploaded, please open the file and check that the text on the last line "Singapore Marriott Tang Plaza Hotel" is spelt correctly. If it is not, please correct the typo and save the file before proceeding to the next step.
 
+Before the `booking.csv` can be uploaded, please open the file and check that the hotel name "Singapore Marriott Tang Plaza Hotel" is spelt correctly. If it is not, please correct all of the typos and save the file before proceeding to the next step.
+
 ---
 
 1. Click **Upload** on the left menu.
