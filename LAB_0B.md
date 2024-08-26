@@ -168,7 +168,7 @@ Firefox is packaged as a Snap app instead of a traditional DEB version to provid
 
 3. Click on the green **Download** button.
 
-3. The deb package file should be downloaded to the Downloaded folder.
+3. The deb package file should be downloaded to the Downloads folder.
 
 4. To install MongoDB Compass, open **Terminal** and navigate to the Downloads folder.
 
