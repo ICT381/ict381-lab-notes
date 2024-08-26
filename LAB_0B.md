@@ -164,10 +164,19 @@ Firefox is packaged as a Snap app instead of a traditional DEB version to provid
 
 1. Navigate to the [MongoDB Compass](https://www.mongodb.com/try/download/compass) website.
 
-2. Click on the green **Download** button.
+2. Under Platform, select **Ubuntu 64-bit**.
 
-3. Run the installer and follow on-screen instructions to install MongoDB Compass.
+3. Click on the green **Download** button.
 
+3. The deb package file should be downloaded to the Downloaded folder.
+
+4. To install MongoDB Compass, open **Terminal** and navigate to the Downloads folder.
+
+   ```bash
+   cd ~/Downloads
+   # run this command to install the deb file
+   sudo apt-get install ./mongodb-compass_XXX_amd64.deb -y
+   ```
 
 ## Task 7: Downloading and installing VSCode
 
