@@ -51,28 +51,26 @@ Open a terminal and follow the steps given.
     sudo ./nodesource_setup.sh
     rm -rf nodesource_setup.sh
     ```
-2. Press **TAB** to highlight the **CANCEL** button and press **ENTER**.
-
-3. Install Node.js.
+2. Install Node.js.
 
     ```bash
     sudo apt install nodejs -y
     ```
 
-4. You can verify the installation by checking the version of Node.js and npm.
+3. You can verify the installation by checking the version of Node.js and npm.
 
     ```bash
     node -v
     npm -v
     ```
 
-5. Navigate to the myReactApp directory.
+4. Navigate to the myReactApp directory.
 
     ```bash
     cd /home/ubuntu/myReactApp
     ```
 
-6. Install ReactJS package necessary for creating ReactJS projects.
+5. Install ReactJS package necessary for creating ReactJS projects.
 
     ```bash
     npm install create-react-app
