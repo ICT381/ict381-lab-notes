@@ -60,7 +60,7 @@ We will be working this lab within your own local development VSCode environment
 
 This section is optional if you have already populated the database.
 
-If you have not populated the database, kindly follow the steps provided under Task 5 in [LAB_1A](https://github.com/imhl/ict381-lab-notes/blob/master/LAB_1A.md).
+If you have not populated the database, kindly follow the steps provided under Task 5 in [LAB_1A](https://github.com/ict381/ict381-lab-notes/blob/main/LAB_1A.md).
 
 
 ## Task 4: Run Unit Testing
