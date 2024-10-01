@@ -153,9 +153,8 @@ Before you can access your EC2 instance, you will need to be able to:
 The main tasks for this section are as follows:
 1. Install pip and virtual environment
 2. Install MongoDB Community Edition
-3. Install docker and docker compose
-4. Install MongoDB Compass
-5. Install Nginx
+3. Install Docker and Docker Compose
+4. Install Nginx
 
 To begin with the installation, please enter the following commands in the terminal or PuTTY client.
 
@@ -165,7 +164,7 @@ To begin with the installation, please enter the following commands in the termi
   sudo apt-get install python3-pip python3-venv -y
   ```
 
-  When you encounter this screen, press **TAB** on the keyboard once and the cursor should be at the **Ok** button. Press **Enter** to continue.
+  Should you encounter this screen, press **TAB** on the keyboard once and the cursor should be at the **Ok** button. Press **Enter** to continue.
 
   ![](images/lab4A/apt-install-python.png)
 
@@ -179,7 +178,7 @@ To begin with the installation, please enter the following commands in the termi
   sudo apt-get install mongodb-org -y
   ```
 
-  When you encounter this screen, press **TAB** on the keyboard once and the cursor should be at the **OK** button. Press **Enter** to continue.
+  Should you encounter this screen, press **TAB** on the keyboard once and the cursor should be at the **OK** button. Press **Enter** to continue.
 
   ![](images/lab4A/apt-install-mongodb.png)
 
@@ -194,7 +193,7 @@ To begin with the installation, please enter the following commands in the termi
 
   ![](images/lab4A/mongod-version.png)
 
-- Install docker and docker compose.
+- Install Docker and Docker Compose.
     
     * Run the following commands to install docker and docker compose.
       ```
@@ -234,26 +233,6 @@ To begin with the installation, please enter the following commands in the termi
       docker compose version
       ```
 
-        
-
-- Install MongoDB Compass
-
-  #### For Windows
-  
-    * Download MongoDB Compass from this [link](https://downloads.mongodb.com/compass/mongodb-compass-1.43.1-win32-x64.exe).
-
-    * Run the installer and follow the on-screen instructions to install MongoDB Compass.
-      > **NOTE**: The Compass installer will prompt you to install the minimum required version of the .NET framework if it is not already installed on your system.
-
-  #### For Azure Lab Services
-
-    * Run the following to install MongoDB Compass.
-
-      ```
-      wget https://downloads.mongodb.com/compass/mongodb-compass_1.44.4_amd64.deb
-      sudo apt install ./mongodb-compass_1.44.4_amd64.deb -y
-      sudo rm -rf mongodb-compass_1.44.4_amd64.deb
-      ```
 - Install Nginx
   
     * Run the following to install Nginx.
