@@ -3,15 +3,22 @@
 This lab will guide you through the process of running the staycationX and ReactJS application on docker containers in an EC2 instance in AWS.
 
 ## Instructions
-The main tasks for this lab are as follows:
+
+In this lab, it is separated in two stages.
+
+The first stage will guide you through the following tasks.
 1. Stopping Mongod service if it is running
 2. Registering a Docker Hub account
-3. Producing docker images from individual components of the staycationX application
-4. Tagging and pushing your own container image to Docker Hub
-5. Using Docker Compose to run containers
-6. Accessing staycationX application on the web browser
-7. Connecting to MongoDB using MongoDB Compass (Optional)
-8. Running the ReactJS application with docker containers
+3. Producing docker images from individual components of the StaycationX application
+4. Modify myReactApp source codes
+5. Producing docker image for myReactApp application
+6. Using Docker Compose to run containers
+
+
+The second stage will guide you through the following tasks.
+1. Tagging and pushing your own container images to Docker Hub
+2. Using Docker Compose to run containers
+3. Connecting to applications
 
 ## Task 1 : Stopping Mongod service if it is running
 
@@ -54,87 +61,268 @@ sudo systemctl stop mongod
 8. Upon successful login, you will be redirected to the docker hub dashboard.
 
 
-## Task 3: Producing docker images from individual components of the staycationX application
+## Task 3: Producing docker images from individual components of the StaycationX application
 
-In this task, you will produce docker images from individual components of the staycationX application. The components are as follows:
+In this task, you will produce docker images from individual components of the StaycationX application. The components are as follows:
 
-- staycationX
+- StaycationX
 - MongoDB
-- Nginx
 
-To get started, please navigate to the staycationX folder. Please check that you are in the nginx branch.
+To get started, please navigate to the StaycationX folder. Please check that you are in the `nginx` branch.
 
 ```bash
-cd /home/ubuntu/staycationX
-git checkout nginx
+cd /home/ubuntu/StaycationX
+git switch nginx
 ```
 
 In the folder, you will notice that there are several dockerfiles. We will use these dockerfiles to create docker images for each of the components.
 
-- staycationX docker image
-    - Run the following to build the docker image for the staycationX flask application.
+* StaycationX docker image
+  
+  Run the following to build the docker image for the staycationX flask application.
 
-      ```bash
-      docker build -t ict381_staycation .
-      ```
+  ```bash
+  docker build -t ict381_staycation .
+  ```
 
-      ![](images/lab4C/docker-build-staycation.png)
+  ![](images/lab4C/docker-build-staycation.png)
 
+* MongoDB docker image
+  
+  Run the following to build the docker image for mongodb.
 
-- MongoDB docker image
-    - Run the following to build the docker image for mongodb.
+  ```bash
+  docker build -t ict381_mongo -f DockerfileMongo .
+  ```
 
-      ```bash
-      docker build -t ict381_mongo -f DockerfileMongo .
-      ```
-
-      ![](images/lab4C/docker-build-mongo.png)
-
-
-- Nginx docker image
-    - Run the following to build the docker image for nginx.
-
-      ```bash
-      docker build -t ict381_nginx -f DockerfileNginx .
-      ```
-
-      ![](images/lab4C/docker-build-nginx.png)
+  ![](images/lab4C/docker-build-mongo.png)
 
 
-After creating the Docker images on your development machine, you can use the `docker compose` command to run the staycationX application. More information on the benefits of using Docker Compose can be found in Task 5.
+## Task 4: Modify myReactApp source codes
 
-*  Ensure that you are still in the staycationX folder of the nginx branch.
+In your myReactApp repository, you are required to modify the source code for these two files `form.js` and `show.js`.
 
-*  Run the `docker compose` command.
+In both files, the StaycationX API URL is currently set to `localhost`, which functions correctly on your development machine. However, when deploying to the cloud or a remote server, you will need to update the URL to the <u>server's actual IP address</u>, as `localhost` refers only to the local machine and is inaccessible over the internet.
 
-   ```bash
-   docker compose up -d
-   ```
+The two files are located at:
+* myReactApp/src/Components/Form/form.js **(Line 18)**
+* myReactApp/src/Pages/show.js **(Line 36)**
 
-   Docker Compose will read the configuration defined in the docker-compose.yml and start to execute the specified steps to setup and manage the multi-container application.
+Make the changes for the two files: 
 
-   The default path for a Docker Compose file is either `compose.yml` or `docker-compose.yml` that is placed within the working directory. If you have a different file name, you need to specify the file name using the `-f` flag. In example above, the file `docker-compose.yml` is being used.
+* Insert these two lines of code to replace the line mentioned above:
 
-## Task 4: Tagging and pushing your own container image to Docker Hub
+  ```js
+  const serverAddress = window.location.hostname;
+  const url = 'http://' +serverAddress+ ":5000";
+  ```
 
-Now, you have created the docker images for the staycationX application, MongoDB and Nginx. The next step is to tag and push the images to Docker Hub.
+* Save the changes.
+
+
+## Task 5: Producing docker image for myReactApp application
+
+1. Navigate to the myReactApp folder.
+
+    ```bash
+    cd /home/ubuntu/myReactApp
+    ```
+
+2. Create a .dockerignore file to exclude unnecessary folder from the docker build context.
+
+    ```bash
+    echo 'node_modules' > .dockerignore
+    ```
+
+3.  Create a dockerfile for myReactApp.
+
+    ```bash
+    tee /home/ubuntu/myReactApp/DockerfilemyReactApp <<EOF
+
+    FROM node:16.20.2-alpine AS builder
+
+    WORKDIR /app
+
+    COPY package*.json ./
+
+    RUN npm install
+
+    COPY . .
+
+    RUN npm run build
+
+    FROM nginx
+
+    EXPOSE 80
+
+    COPY --from=builder /app/build /usr/share/nginx/html
+
+    EOF
+    ```
+
+4. Create the docker image for myReactApp.
+
+    ```bash
+    docker build -t ict381_myreactapp -f DockerfilemyReactApp .
+    ```
+
+    ![](images/lab4C/docker-build-myreactapp.png)
+
+## Task 6: Using Docker Compose to run containers
+
+After creating the Docker images on your development machine, you can use the `docker compose` command to run both the staycationX and myReactApp application simultaneously.
+
+Docker compose simplifies the management of multi-container applications by providing a single YAML configuration file. With a single command, one can create and start all the services specified in the configuration file, streamlining the development and deployment process.
+
+* Ensure that you are still in the myReactApp folder.
+
+* Create `compose.yaml` file with the following contents.
+
+  ```bash
+  tee /home/ubuntu/myReactApp/compose.yaml <<EOF
+
+  services:
+    frontend:
+      container_name: ict381app
+      image: ict381_staycation
+      networks:
+      - ict381network
+      ports:
+      - "5000:5000"
+
+    db:
+      container_name: ict381db
+      image: ict381_mongo
+      networks:
+      - ict381network
+      ports:
+      - "27017:27017"
+
+    myReactApp:
+      container_name: myReactApp
+      image: ict381_myreactapp
+      networks:
+      - ict381network
+      ports:
+      - "80:80"
+      depends_on:
+      - frontend
+
+  networks:
+    ict381network:
+
+  EOF
+  ```
+
+* Run the `docker compose` command.
+
+  ```bash
+  docker compose up -d
+  ```
+
+  Docker Compose will read the configuration defined in the docker-compose.yml and start to execute the specified steps to setup and manage the multi-container application.
+
+  The default path for a Docker Compose file is either `compose.yaml` (preferred) or `compose.yml` that is placed within the working directory. It also supports `docker-compose.yaml` and `docker-compose.yml` for backward compatibility of earlier versions. If you have a different file name, you need to specify the file name using the `-f` flag.
+
+* To view the applications, please enter the EC2 IP Address on the URL bar followed by the port.
+  * StaycationX application: `http://EC2_IP_ADDRESS:5000`
+  * myReactApp application: `http://EC2_IP_ADDRESS`
+
+* To connect to MongoDB via MongoDB Compass, the URI is `mongodb://EC2_IP_ADDRESS:27017/`
+
+* To stop and remove the resources created by Docker Compose, you can use the command `docker compose down`.
+
+  ```bash
+  docker compose down
+  ```
+
+---
+
+**TIP: Using of Docker Volumes**
+
+You will notice that when you stop and remove the containers, any data in database is lost when you start the containers the next time. To persist the data, you can consider using Docker Volumes.
+
+Docker volumes are used to persist data generated by and used by Docker containers. Volumes are stored in a part of the host filesystem which is managed by Docker (`/var/lib/docker/volumes/` on Linux).
+
+To read more about Docker Volumes, you can refer to the [Docker documentation](https://docs.docker.com/engine/storage/volumes/).
+
+To use Docker Volumes, you need to modify the `compose.yml` file to include the volume configuration.
+
+```bash
+tee /home/ubuntu/myReactApp/compose.yaml <<EOF
+
+services:
+  frontend:
+    container_name: ict381app
+    image: ict381_staycation
+    networks:
+    - ict381network
+    ports:
+    - "5000:5000"
+
+  db:
+    container_name: ict381db
+    image: ict381_mongo
+    networks:
+    - ict381network
+    ports:
+    - "27017:27017"
+    volumes:
+    - ict381vol:/data/db
+
+  myReactApp:
+    container_name: myReactApp
+    image: ict381_myreactapp
+    networks:
+    - ict381network
+    ports:
+    - "80:80"
+    depends_on:
+    - frontend
+
+networks:
+  ict381network:
+
+volumes:
+  ict381vol:
+
+EOF
+```
+
+---
+
+* To check the status of the Docker Compose, you can use the command `docker compose ps`.
+
+  ```bash
+  docker compose ps
+  ```
+
+## Task 7: Tagging and pushing your own container images to Docker Hub
+
+Now, you have created the docker images for the StaycationX application, MongoDB and myReactApp. The next step is to tag and push the images to Docker Hub.
 
 1. Tag the docker images with your docker hub username.
 
     ```bash
     docker tag ict381_staycation <your_docker_hub_username>/ict381_staycation
     docker tag ict381_mongo <your_docker_hub_username>/ict381_mongo
-    docker tag ict381_nginx <your_docker_hub_username>/ict381_nginx
+    docker tag ict381_myreactapp <your_docker_hub_username>/ict381_myreactapp
     ```
 
-    A sample screenshot using the username **suss001** which was created earlier in Task 1.
+    An example using the dockerhub username **suss001** which was created earlier in Task 2.
 
-    ![](images/lab4C/docker-tag-images.png)
+    ```bash
+    # docker tag ict381_staycation suss001/ict381_staycation
+    # docker tag ict381_mongo suss001/ict381_mongo
+    # docker tag ict381_myreactapp suss001/ict381_myreactapp
+    ```
+
+    ![](images/lab4C/docker-tagging-images.png)
 
 2. Before you can push your docker image to docker hub, you would need to login to docker hub. Run the following to login to docker hub.
 
     ```bash
-    docker login
+    docker login -u <YOUR-DOCKER-USERNAME>
     ```
 
     > **NOTE**: There is no visible indication of the characters being typed when you are keying your password. Please key in your password and press **Enter**.
@@ -146,36 +334,41 @@ Now, you have created the docker images for the staycationX application, MongoDB
     ```bash
     docker push <your_docker_hub_username>/ict381_staycation
     docker push <your_docker_hub_username>/ict381_mongo
-    docker push <your_docker_hub_username>/ict381_nginx
+    docker push <your_docker_hub_username>/ict381_myreactapp
     ```
 
-    ![](images/lab4C/docker-push-image.png)
+    Sample screenshots:
 
+    ![](images/lab4C/docker-push-ict381staycation.png)
 
-## Task 5: Using Docker Compose to run containers
+    ![](images/lab4C/docker-push-ict381mongo.png)
 
-We will use docker compose to run the staycationX application.
+    ![](images/lab4C/docker-push-myreactapp.png)
+    
 
-Docker compose simplifies the management of multi-container applications by providing a single YAML configuration file. With a single command, one can create and start all the services specified in the configuration file, streamlining the development and deployment process.
+## Task 8: Using Docker Compose to run containers
 
-In the staycationX folder under the nginx branch, we will inspect the file **dockerhub.yml** and insert your own docker id in the placeholder. Please save the file after editing.
+We will use Docker Compose to run the StaycationX, mongoDB and myReactApp application. Unlike Task 6, where you used a local copy, this time you will pull the image from Docker Hub.
 
-To save the file, press `Ctrl+O` to save the contents and `Ctrl+X` to exit.
+In the StaycationX folder under the nginx branch, we will inspect the file **dockerhub.yml** and perfom the following:
+
+1.  insert your own docker id in the placeholder
+2.  remove the content on line 1 as it is obsolete now
+3.  make changes to the `myReactApp` section.
 
 ```bash
+cd /home/ubuntu/StaycationX
 nano dockerhub.yml
 ```
 
-![](images/lab4C/dockerhub-file.png)
+To save the file, press `Ctrl+O` to save the contents and `Ctrl+X` to exit.
 
-A sample screenshot of the file with docker id **suss001** is shown below.
+A sample screenshot of the completed file with docker id **suss001** is shown below.
 
 ![](images/lab4C/dockerhub-file-edited.png)
 
 
-## Task 6: Accessing staycationX application on the web browser
-
-Finally, we will run the staycationX application using docker compose. Enter the following to run the application.
+Finally, we will run the StaycationX, mongoDB and myReactApp application using docker compose. Enter the following to run the application.
 
 ```bash
 docker compose -f dockerhub.yml up -d
@@ -183,85 +376,31 @@ docker compose -f dockerhub.yml up -d
 
 ![](images/lab4C/docker-compose-run.png)
 
-> **TIP1**: To check the status of the docker compose, you can use the command **docker compose ps**
+> **TIP**: To check the status of the docker compose, you can use the command **docker compose ps**.
 >
 > ![](images/lab4C/docker-compose-check.png)
 
-> **TIP2**: To stop and remove the resources created by docker compose, you can use the command **docker compose down**
->
-> ![](images/lab4C/docker-compose-down.png)
+To stop and remove the resources created by docker compose, you can use the command **docker compose -f dockerhub.yml down**.
 
-To access the staycationX application, open a web browser and enter the **public IP address** of your EC2 instance.
+![](images/lab4C/docker-compose-down.png)
 
-You should get the following sample screenshot.
 
-![](images/lab4C/staycationX-deployed.png)
+## Task 9: Connecting to applications
+To access StaycationX application, open web browser and navigate to the `http://EC2_IP_ADDRESS:5000`.
 
-## Task 7: Connecting to MongoDB using MongoDB Compass (Optional)
+To access myReactApp application, navigate to `http://EC2_IP_ADDRESS`.
+
+To access MongoDB via MongoDB Compass application:
 
 1. Open the MongoDB Compass application.
 
-2. Change the URI to be mongodb://`<your EC2 IP address>`:27017.
+2. Change the URI to be `mongodb://EC2 IP address>:27017`.
 
 3. Click **Connect**.
 
-   ![](images/lab4C/connect-mongodb-compass.png)
-
 4. Ensure you can connect to MongoDB successfully.
 
----
-
-## Task 8: Running the ReactJS application with docker containers
-
-Next, we will explore building and deploying the ReactJS application, which serves as the frontend for the StaycationX application. The ReactJS frontend communicates with the StaycationX backend through API calls to fetch required data. Therefore, in the `docker-compose.yaml` file, you will notice references to both the StaycationX application and the MongoDB database.
-
-To start building the ReactJS docker image, please do the following.
-
-1. Navigate to the home folder and clone the **OneMap** branch of the myReactApp repository.
-
-    ```bash
-    cd /home/ubuntu/
-    git clone -b OneMap git@github.com:USERNAME/myReactApp
-    ```
-
-2. Navigate to the myReactApp folder.
-
-    ```bash
-    cd /home/ubuntu/myReactApp
-    ```
-
-3. Build the ReactJS docker image.
-
-    ```bash
-    docker build -f DockerfileReact -t ict381_nginx_react .
-    ```
-
-4. Once the docker image is built, you can run the ReactJS application using Docker Compose.
-
-    ```bash
-    docker-compose up -d
-    ```
-
-5. Open your web browser and enter **localhost** on the address bar.
-
-6. You should see the ReactJS application running.
-
-7. Click on the **STX** button.
-
-8. Before you can login, you will need to register for an admin account for the StaycationX app (http://localhost:5000) first. After logging in, you will need to upload the staycation packages and user CSV files.
-
-9. Return to the ReactJS app and login with the admin account credentials you have created.
-
-10. You should see the list of all staycation packages.
-
-    ![](images/lab4C/reactapp-packages.png)
-
-11. To stop and remove the resources created by Docker Compose, you can use the command **docker compose down**.
-
-    ```bash
-    docker compose down
-    ```
 
 ---
 
-**Congratulations!** You have successfully run the staycationX and ReactJS application on Docker containers in an EC2 instance in AWS. You have also pushed your own docker images to Docker Hub.
+**Congratulations!** You have successfully run the StaycationX and ReactJS application on Docker containers in an EC2 instance in AWS. You have also pushed your own docker images to Docker Hub and run the applications by using the docker images from Docker Hub.
