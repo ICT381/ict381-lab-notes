@@ -1,6 +1,6 @@
-# Lab - Practice deploying StaycationX on Virtual Machine
+# Lab - Practice deploying StaycationX and myReactApp on Virtual Machine
 
-This lab will guide you through the process of manually deploying the staycationX application on an EC2 instance in AWS.
+This lab will guide you through the process of manually deploying the staycationX and myReactApp application on an EC2 instance in AWS.
 
 ## Pre-requisites
 - Completed all the tasks in LAB_4A
@@ -9,11 +9,12 @@ This lab will guide you through the process of manually deploying the staycation
 The main tasks for this lab are as follows:
 1. Starting the EC2 instance if it is not running
 2. Downloading and installing Git Credential Manager in the EC2 instance
-3. Cloning staycationX repository
+3. Cloning StaycationX repository
 4. Setting up virtual environment
-5. Running the staycationX application with Flask
-6. Checking out the nginx branch from the staycationX repository
-7. Running the nginx branch of the staycationX application using gunicorn
+5. Running the StaycationX application with Flask
+6. Checking out the nginx branch from the StaycationX repository
+7. Running the nginx branch of the StaycationX application using gunicorn
+8. Running myReactApp application
 
 ## Task 1: Starting EC2 instance if it is not running
 
@@ -31,9 +32,9 @@ The main tasks for this lab are as follows:
 
 You can generate a SSH key in the EC2 instance and add the public key (`id_rsa.pub`) to your Github account.
 
-Please refer to [Lab_0C Exercise 4](LAB_0C.md#exercise-4-github-ssh-keys) if you need the detailed steps.
+Please refer to [Lab_0C Task 4](LAB_0C.md#exercise-4-github-ssh-keys) if you need the detailed steps.
 
-## Task 3: Cloning staycationX repository
+## Task 3: Cloning StaycationX repository
 
 1. Change the current working directory to the location where you want the cloned directory. For example: /home/ubuntu
 
@@ -41,10 +42,10 @@ Please refer to [Lab_0C Exercise 4](LAB_0C.md#exercise-4-github-ssh-keys) if you
     cd /home/ubuntu
     ```
 
-2. Run the following to clone your own staycationX repository.
+2. Run the following to clone the course StaycationX repository.
 
     ```bash
-    git clone git@github.com:USERNAME/staycationX
+    git clone git@github.com:ict381/StaycationX
     ```
 
 ## Task 4: Setting up virtual environment
@@ -52,7 +53,7 @@ Please refer to [Lab_0C Exercise 4](LAB_0C.md#exercise-4-github-ssh-keys) if you
 1.  Run the following to setup virtual environment.
     
     ```bash
-    cd /home/ubuntu/staycationX
+    cd /home/ubuntu/StaycationX
     python3 -m venv venv
     ```
 2.  Install the python libraries in the virtual environment.
@@ -62,9 +63,7 @@ Please refer to [Lab_0C Exercise 4](LAB_0C.md#exercise-4-github-ssh-keys) if you
     pip install -r requirements.txt
     ```
 
-    ![](images/lab4B/install-python-libs.png)
-
-## Task 5: Running the staycationX application with Flask
+## Task 5: Running the StaycationX application with Flask
 1. Before running the application, you need to ensure that the MongoDB database is running. Run the following to start the MongoDB service.
 
     ```bash
@@ -73,34 +72,31 @@ Please refer to [Lab_0C Exercise 4](LAB_0C.md#exercise-4-github-ssh-keys) if you
 
     > **TIP**: You can use the command **sudo systemctl status mongod** to check whether the service is running.
 
-2. Start the staycationX application.
+2. Start the StaycationX application.
 
     ```bash
     ./start.sh
     ```
-    ![](images/lab4B/start-staycationX-app.png)
 
 3. Ensure that there are no errors in terminal when starting the application.
 
 4. To exit the running application, press `Ctrl+C` in terminal.
 
-## Task 6: Checkout the nginx branch of the staycationX repository
+## Task 6: Checkout the nginx branch of the StaycationX repository
 
-1. Ensure that your current working directory is still at the /home/ubuntu/staycationX.
+1. Ensure that your current working directory is still at the /home/ubuntu/StaycationX.
     
     ```bash
-    cd /home/ubuntu/staycationX
+    cd /home/ubuntu/StaycationX
     ```
 
 2. Run the following to checkout the nginx branch of the staycationX repository.
    
    ```bash
-   git checkout nginx
+   git switch nginx
    ```
 
-   ![](images/lab4B/checkout-nginx.png)
-
-## Task 7: Running the nginx branch of the staycationX application using gunicorn
+## Task 7: Running the nginx branch of the StaycationX application using gunicorn
 
 1. Install `gunicorn` in the virtual environment.
 
@@ -108,13 +104,13 @@ Please refer to [Lab_0C Exercise 4](LAB_0C.md#exercise-4-github-ssh-keys) if you
    pip install gunicorn
    ```
 
-2. Run the staycationX application using gunicorn.
+2. Run the StaycationX application using gunicorn.
 
    ```bash
    gunicorn --bind :5000 -m 007 -e FLASK_ENV=development --workers 3 "app:create_app()"
    ```
 
-3. To access the staycationX application, open a web browser and enter the public IP address of the EC2 instance followed by port `5000`.
+3. To access the StaycationX application, open a web browser and enter the public IP address of the EC2 instance followed by port `5000`.
 
    You should get the following sample screenshot.
 
@@ -124,6 +120,50 @@ Please refer to [Lab_0C Exercise 4](LAB_0C.md#exercise-4-github-ssh-keys) if you
 7. To stop the running application, press `Ctrl+C` in terminal.
 
 
+## Task 8: Running myReactApp application
+
+1. Navigate to the home folder and clone the **OneMap** branch of the myReactApp repository.
+
+    ```bash
+    cd /home/ubuntu/
+    git clone -b OneMap git@github.com:USERNAME/myReactApp
+    ```
+
+2. Download and install NodeJS.
+
+    ```bash
+    curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
+    chmod +x nodesource_setup.sh
+    sudo ./nodesource_setup.sh
+    rm -rf nodesource_setup.sh
+    sudo apt install nodejs -y
+    ```
+
+3. Navigate to the myReactApp directory.
+
+    ```bash
+    cd /home/ubuntu/myReactApp
+    ```
+
+4. Install ReactJS package necessary for creating ReactJS projects.
+
+    ```bash
+    npm install create-react-app
+    ```
+
+5. Run the following to start myReactApp.
+
+    ```bash
+    npm start
+    ```
+
+6.  Open your web browser and enter the public IP address of the EC2 and followed by port `3000`.
+
+    A sample screenshot is shown below.
+
+    ![](images/lab4B/myReactApp-deployed.png)
+
+7. For myReactApp to function properly, please make sure that both `StaycationX` app and `mongoDB` are running as well.
 ---
 
 **Congratulations!** You have completed this lab exercise. Move on to the next exercise for deployment using containers.
