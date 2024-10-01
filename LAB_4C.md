@@ -10,9 +10,8 @@ The first stage will guide you through the following tasks.
 1. Stopping Mongod service if it is running
 2. Registering a Docker Hub account
 3. Producing docker images from individual components of the StaycationX application
-4. Modify myReactApp source codes
-5. Producing docker image for myReactApp application
-6. Using Docker Compose to run containers
+4. Producing docker image for myReactApp application
+5. Using Docker Compose to run containers
 
 
 The second stage will guide you through the following tasks.
@@ -98,29 +97,7 @@ In the folder, you will notice that there are several dockerfiles. We will use t
   ![](images/lab4C/docker-build-mongo.png)
 
 
-## Task 4: Modify myReactApp source codes
-
-In your myReactApp repository, you are required to modify the source code for these two files `form.js` and `show.js`.
-
-In both files, the StaycationX API URL is currently set to `localhost`, which functions correctly on your development machine. However, when deploying to the cloud or a remote server, you will need to update the URL to the <u>server's actual IP address</u>, as `localhost` refers only to the local machine and is inaccessible over the internet.
-
-The two files are located at:
-* myReactApp/src/Components/Form/form.js **(Line 18)**
-* myReactApp/src/Pages/show.js **(Line 36)**
-
-Make the changes for the two files: 
-
-* Insert these two lines of code to replace the line mentioned above:
-
-  ```js
-  const serverAddress = window.location.hostname;
-  const url = 'http://' +serverAddress+ ":5000";
-  ```
-
-* Save the changes.
-
-
-## Task 5: Producing docker image for myReactApp application
+## Task 4: Producing docker image for myReactApp application
 
 1. Navigate to the myReactApp folder.
 
@@ -168,7 +145,7 @@ Make the changes for the two files:
 
     ![](images/lab4C/docker-build-myreactapp.png)
 
-## Task 6: Using Docker Compose to run containers
+## Task 5: Using Docker Compose to run containers
 
 After creating the Docker images on your delivery machine, you can use the `docker compose` command to run both the staycationX and myReactApp application simultaneously.
 
@@ -236,6 +213,12 @@ Docker compose simplifies the management of multi-container applications by prov
   docker compose down
   ```
 
+* To check the status of the Docker Compose, you can use the command `docker compose ps`.
+
+  ```bash
+  docker compose ps
+  ```
+
 ---
 
 **TIP: Using of Docker Volumes**
@@ -291,13 +274,7 @@ EOF
 
 ---
 
-* To check the status of the Docker Compose, you can use the command `docker compose ps`.
-
-  ```bash
-  docker compose ps
-  ```
-
-## Task 7: Tagging and pushing your own container images to Docker Hub
+## Task 6: Tagging and pushing your own container images to Docker Hub
 
 Now, you have created the docker images for the StaycationX application, MongoDB and myReactApp. The next step is to tag and push the images to Docker Hub.
 
@@ -346,9 +323,9 @@ Now, you have created the docker images for the StaycationX application, MongoDB
     ![](images/lab4C/docker-push-myreactapp.png)
     
 
-## Task 8: Using Docker Compose to run containers
+## Task 7: Using Docker Compose to run containers
 
-We will use Docker Compose to run the StaycationX, mongoDB and myReactApp application. Unlike Task 6, where you used a local copy, this time you will pull the image from Docker Hub.
+We will use Docker Compose to run the StaycationX, mongoDB and myReactApp application. Unlike Task 5, where you used a local copy, this time you will pull the image from Docker Hub.
 
 In the StaycationX folder under the nginx branch, we will inspect the file **dockerhub.yml** and perfom the following:
 
@@ -385,7 +362,7 @@ To stop and remove the resources created by docker compose, you can use the comm
 ![](images/lab4C/docker-compose-down.png)
 
 
-## Task 9: Connecting to applications
+## Task 8: Connecting to applications
 To access StaycationX application, open web browser and navigate to the `http://EC2_IP_ADDRESS:5000`.
 
 To access myReactApp application, navigate to `http://EC2_IP_ADDRESS`.
