@@ -63,10 +63,11 @@ The main tasks for this lab are as follows:
 7. Under **Network Settings**, choose **Edit**. 
     - For **Security group name**, give it a name, for example, **staycationX-sg**
     - For **Description**, type **staycationX security group**
-    - Under **Inbound Security Group Rules**, click **Add security group rule** to add the additional *2* rules:
+    - Under **Inbound Security Group Rules**, click **Add security group rule** to add the additional `4` rules:
         - Type: **HTTP**, Source type: **Anywhere**
         - Type: **Custom TCP**, Port range: **5000**, Source type: **Anywhere**
         - Type: **Custom TCP**, Port range: **27017**, Source type: **Anywhere**
+        - Type: **Custom TCP**, Port range: **3000**, Source type: **Anywhere**
     
     ![](images/lab4A/create-ec2-sg.png)
         
@@ -249,9 +250,9 @@ To begin with the installation, please enter the following commands in the termi
     * Run the following to install MongoDB Compass.
 
       ```
-      wget https://downloads.mongodb.com/compass/mongodb-compass_1.43.1_amd64.deb
-      sudo apt install ./mongodb-compass_1.43.1_amd64.deb -y
-      sudo rm -rf mongodb-compass_1.43.1_amd64.deb
+      wget https://downloads.mongodb.com/compass/mongodb-compass_1.44.4_amd64.deb
+      sudo apt install ./mongodb-compass_1.44.4_amd64.deb -y
+      sudo rm -rf mongodb-compass_1.44.4_amd64.deb
       ```
 - Install Nginx
   
