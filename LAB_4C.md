@@ -170,7 +170,7 @@ Make the changes for the two files:
 
 ## Task 6: Using Docker Compose to run containers
 
-After creating the Docker images on your development machine, you can use the `docker compose` command to run both the staycationX and myReactApp application simultaneously.
+After creating the Docker images on your delivery machine, you can use the `docker compose` command to run both the staycationX and myReactApp application simultaneously.
 
 Docker compose simplifies the management of multi-container applications by providing a single YAML configuration file. With a single command, one can create and start all the services specified in the configuration file, streamlining the development and deployment process.
 
