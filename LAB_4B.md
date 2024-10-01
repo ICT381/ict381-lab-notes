@@ -14,7 +14,9 @@ The main tasks for this lab are as follows:
 5. Running the StaycationX application with Flask
 6. Checking out the nginx branch from the StaycationX repository
 7. Running the nginx branch of the StaycationX application using gunicorn
-8. Running myReactApp application
+8. Modify myReactApp source codes
+9. Running myReactApp application
+
 
 ## Task 1: Starting EC2 instance if it is not running
 
@@ -42,10 +44,10 @@ Please refer to [Lab_0C Task 4](LAB_0C.md#exercise-4-github-ssh-keys) if you nee
     cd /home/ubuntu
     ```
 
-2. Run the following to clone the course StaycationX repository.
+2. Run the following to clone your own StaycationX repository.
 
     ```bash
-    git clone git@github.com:ict381/StaycationX
+    git clone git@github.com:USERNAME/StaycationX
     ```
 
 ## Task 4: Setting up virtual environment
@@ -84,7 +86,7 @@ Please refer to [Lab_0C Task 4](LAB_0C.md#exercise-4-github-ssh-keys) if you nee
 
 ## Task 6: Checkout the nginx branch of the StaycationX repository
 
-1. Ensure that your current working directory is still at the /home/ubuntu/StaycationX.
+1. Ensure that your current working directory is still at the StaycationX folder.
     
     ```bash
     cd /home/ubuntu/StaycationX
@@ -120,16 +122,37 @@ Please refer to [Lab_0C Task 4](LAB_0C.md#exercise-4-github-ssh-keys) if you nee
 7. To stop the running application, press `Ctrl+C` in terminal.
 
 
-## Task 8: Running myReactApp application
+## Task 8: Modify myReactApp source codes
 
-1. Navigate to the home folder and clone the **OneMap** branch of the myReactApp repository.
+In your myReactApp repository, you are required to modify the source code for these two files `form.js` and `show.js`.
+
+In both files, the StaycationX API URL is currently set to `localhost`, which functions correctly on your development machine. However, when deploying to the cloud or a remote server, you will need to update the URL to the <u>server's actual IP address</u>, as `localhost` refers only to the local machine and is inaccessible over the internet.
+
+The two files are located at:
+* myReactApp/src/Components/Form/form.js **(Line 18)**
+* myReactApp/src/Pages/show.js **(Line 36)**
+
+Make the changes for the two files: 
+
+1.  Navigate to the home folder and clone the **OneMap** branch of your myReactApp repository.
 
     ```bash
     cd /home/ubuntu/
     git clone -b OneMap git@github.com:USERNAME/myReactApp
     ```
 
-2. Download and install NodeJS.
+2.  Insert these two lines of codes to replace the line of the two files mentioned above.
+
+    ```js
+    const serverAddress = window.location.hostname;
+    const url = 'http://' +serverAddress+ ":5000";
+    ```
+
+3.  Save the changes.
+
+## Task 9: Running myReactApp application
+
+1. Download and install NodeJS.
 
     ```bash
     curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
@@ -139,7 +162,7 @@ Please refer to [Lab_0C Task 4](LAB_0C.md#exercise-4-github-ssh-keys) if you nee
     sudo apt install nodejs -y
     ```
 
-3. Navigate to the myReactApp directory.
+3. Ensure that you are still at myReactApp folder.
 
     ```bash
     cd /home/ubuntu/myReactApp
