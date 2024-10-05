@@ -361,6 +361,17 @@ To stop and remove the resources created by docker compose, you can use the comm
 
 ![](images/lab4C/docker-compose-down.png)
 
+Lastly, remember to push the changes of this file back to your GitHub repository, as it would be used for the subsequent labs.
+
+Here's an example of how to push the file to your Github repository.
+
+```bash
+# Ensure that you are on the nginx branch
+# It is assumed that you are at /home/ubuntu/StaycationX directory.
+# git add dockerhub.yml
+# git commit -m "update docker user for the images"
+# git push origin nginx
+```
 
 ## Task 8: Connecting to applications
 To access StaycationX application, open web browser and navigate to the `http://EC2_IP_ADDRESS:5000`.

@@ -148,7 +148,20 @@ Make the changes for the two files:
     const url = 'http://' +serverAddress+ ":5000";
     ```
 
-3.  Save the changes.
+3.  Save the changes locally.
+
+4.  You would need to push the changes to your Github repository as this file will be used in the subsequent labs.
+
+    Here's an example of how to push the files back to your repo.
+
+    ```bash
+    # Ensure that you are on the OneMap branch
+    # It is assumed that you are at /home/ubuntu/myReactApp directory.
+    # git add src/Components/Form/form.js
+    # git add src/Pages/show.js
+    # git commit -m "update API url"
+    # git push origin OneMap
+    ```
 
 ## Task 9: Running myReactApp application
 
