@@ -7,7 +7,7 @@ This lab will guide you through the process of running the staycationX and React
 In this lab, it is separated in two stages.
 
 The first stage will guide you through the following tasks.
-1. Stopping Mongod service if it is running
+1. Stopping Mongod and Nginx service if it is running
 2. Registering a Docker Hub account
 3. Producing docker images from individual components of the StaycationX application
 4. Producing docker image for myReactApp application
@@ -19,13 +19,20 @@ The second stage will guide you through the following tasks.
 2. Using Docker Compose to run containers
 3. Connecting to applications
 
-## Task 1 : Stopping Mongod service if it is running
+## Task 1 : Stopping Mongod and Nginx service if it is running
 
 In order to prevent a port conflict between the local MongoDB database and the container's MongoDB database on port `27017`, we will stop the **mongod** service running on the EC2 instance.
 
 ```bash
 sudo systemctl stop mongod
 ```
+
+In order To prevent port conflict between the local Nginx and the container's Nginx on port `80`, we will stop the **nginx** service running on the EC2 instance.
+
+```bash
+sudo systemctl stop nginx
+```
+
 
 ## Task 2: Registering a Docker Hub account
 
