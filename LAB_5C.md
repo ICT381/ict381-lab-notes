@@ -1,4 +1,4 @@
-# Lab - Provisioning and Configuration of Jenkins
+# Lab - Configuration of Jenkins pipeline
 
 This lab will guide you through the process of setting up a Jenkins pipeline to automate the deployment of our application (StaycationX and myReactApp) using Ansible. The first step involves creating AWS credentials and SSH keys for the Jenkins user to interact with AWS resources and access the deployment machine. Next, the Ansible files will be configured to reference these credentials and perform the necessary tasks. Once the configuration is complete, the Jenkins pipeline will be created and configured to trigger a build whenever new code is pushed to the GitHub repository. This automated deployment process will streamline the development and deployment workflow, ensuring efficient and reliable updates to our application.
 
