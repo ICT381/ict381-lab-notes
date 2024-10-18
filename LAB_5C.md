@@ -31,6 +31,8 @@ AWS credential is used by the Ansible plugin in `aws_ec2.yaml` when Ansible is i
 
 The file `aws_ec2.yaml` is created in Task 3.
 
+Please connect to your delivery machine via PuTTY before performing the tasks below.
+
 1. Before you start to perform the following actions, switch to the jenkins user first.
 
    ```bash
@@ -152,7 +154,7 @@ Create the following files with the following contents.
 
    Type **:wq** and press **Enter** to save and close the file.
 
-   First we create the directory for Ansible group variables and defines specific connection settings for a group of hosts labelled `tag_group_web`. The commands create a YAML file that specifies the SSH private key and the default user ubuntu for connecting to these hosts. The setup simplifies the management of multiple servers by applying consistent variables across the group when running Ansible playook.
+   First we create the directory for Ansible group variables and defines specific connection settings for a group of hosts labelled `tag_group_web`. The commands create a YAML file that specifies the SSH private key and the default user ubuntu for connecting to these hosts. The setup simplifies the management of multiple servers by applying consistent variables across the group when running Ansible playbook.
 
    For testing purposes, the argument `-o StrictHostKeyChecking=no` disables SSH's host key verification, allowing Ansible to connect to remote hosts without prompting for confirmation if the host key is new or has changed. This can be useful for automating connections to new or dynamic hosts.
 
@@ -161,6 +163,8 @@ Create the following files with the following contents.
 4. You can test the dynamic inventory configuration by listing the EC2 instances.
 
    ```bash
+   # switch back to jenkins user
+   su jenkins
    ansible-inventory -i /etc/ansible/aws_ec2.yaml --graph
    ```
 
@@ -204,9 +208,9 @@ Create the following files with the following contents.
 
 ## Task 2: Modify the files in ansible folder under automation repository that require changes
 
-1. Open the `build-application.yaml` file in `ansible` folder under `automation` repository.
+1. Open the `build-docker.yaml` file in `ansible` folder under `automation` repository.
 
-2. On Line 10 of the yaml file, replace the USERNAME placeholder with your own GitHub username.
+2. On Line 10 of the yaml file, replace the USERNAME placeholder with your own docker username.
 
 3. Open the `Jenkinsfile` file under the `automation` repository and replace your GitHub username.
 
@@ -251,7 +255,7 @@ Please save and push all changes to your `automation` repository before proceedi
 
 3. You can click on the **Console Output** to view the build process.
 
-4. If the build is successful, you should see a green tick on the left of the build number.
+4. If the build is successful, you should see a green tick at the top of the page.
 
 5. Go to the web browser and navigate to `http://DEPLOYMENT_EC2_IP`. Pleae ensure that you can view the application.
 
