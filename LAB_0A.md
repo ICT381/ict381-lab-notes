@@ -118,7 +118,7 @@ Configuring WSL to access Windows files allows seamless interaction between the 
    - Press `Ctrl+O` first, then `Enter`.
    - Exit by pressing `Ctrl+X`.
 
-5. Shutdown WSL.
+5. Navigate back to Windows Terminal or Windows Powershell to run the command to shutdown WSL.
 
    ```powershell
    wsl --shutdown
