@@ -141,6 +141,7 @@ To create a copy of the course repositories under your account with write access
       # To run the script file
       git clone git@github.com:ict381/ict381-lab-notes
       cd ict381-lab-notes/scripts
+      chmod +x mirror-repo.sh
       ./mirror-repo.sh
       ```
 
