@@ -59,12 +59,11 @@ Learn how to create a new repository on Github website.
 
 6. Click **Create repository**.
 
-Using the above steps, please create **6** empty repositories with the following given names.
+Using the above steps, please create **5** empty repositories with the following given names.
 
 *  StaycationX
 *  automation
 *  myReactApp
-*  OneMap-API
 *  ReactTutorial
 *  JS_NOTEBOOK
 
@@ -134,8 +133,8 @@ To create a copy of the course repositories under your account with write access
 
    In order to save time, a script named `mirror-repo.sh` has been provided for your convenience. Before you run the script, please note that:
 
-   * You need to insert your own Git user name on Line 11
-   * On Line 20, the cloned directory is set to your home folder by default. If you want to use a different location, change the path there.
+   * You need to insert your own Git user name on Line 11.
+   * On Line 24, the cloned directory is set to your home folder by default. If you want to use a different location, change the path there.
 
       ```bash
       # To run the script file

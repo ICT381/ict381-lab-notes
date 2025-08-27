@@ -17,7 +17,6 @@ course_repo_list=(
     "ict381/myReactApp"
     "ict381/JS_NOTEBOOK"
     "ict381/ReactTutorial"
-    "ict381/OneMap-API"
 )
 
 # Enter a directory path where you want to clone the repositories
