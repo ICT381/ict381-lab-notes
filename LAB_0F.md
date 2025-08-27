@@ -229,12 +229,12 @@ In order to run the `Staycation_API.ipynb` jupyter notebook, you would need to p
     Press `Ctrl+O` followed by **Enter** button to save the file. <br>
     Press `Ctrl+X` to exit the nano editor.
 
-3.  Before you start to run the code in the code cells, you need to ensure the following tasks has been completed:
+3.  Before you run the code cells, ensure that the following tasks have been completed:
     *   Run the StaycationX flask application.
-    *   Ensure that the mongoDB database server is already started
+    *   Ensure that the mongoDB database server is already started.
     *   The mongoDB database has been populated with data.
 
-4. Finally, run the code cells by selecting the **Javascript** kernel.
+4. Finally, run the code cells by using the **Javascript** kernel.
 
 ---
 

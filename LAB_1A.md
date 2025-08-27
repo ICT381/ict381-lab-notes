@@ -29,7 +29,7 @@ We will be performing these tasks in your local development environment.
 
 ## Task 2: Create virtual environment
 
-1. Navigate the staycationX folder.
+1. Navigate to the StaycationX folder.
 
    ```bash
    cd /home/ubuntu/StaycationX
@@ -104,7 +104,6 @@ The 3 CSV files can be found in StaycationX > app > assets > js folder.
 To select files within your WSL environment: When you click on the `Choose File` button in the Window file picker, click `Linux > Ubuntu-22.04 > home > ubuntu > StaycationX > app > assets> js`.
 
 1. Click **Upload** on the left menu.
-
 2. On the **Upload Recordings** page:
 
 ---

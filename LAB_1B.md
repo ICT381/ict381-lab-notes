@@ -30,7 +30,7 @@ The main tasks for this lab are as follows:
 
 ## Task 2: Clone myReactApp Repo
 
-1. Open a **terminal**.
+1. Open a **Terminal**.
 
 2. Clone `myReactApp` repository.
 
