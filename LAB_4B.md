@@ -113,15 +113,17 @@ Please refer to [Lab_0C Task 4](LAB_0C.md#exercise-4-github-ssh-keys) if you nee
     sudo apt install nodejs -y
     ```
 
-2. Ensure that you are still at myReactApp folder.
+2. Clone myReactApp repo to your home folder.
+
+    ```bash
+    cd /home/ubuntu/
+    git clone git@github.com:GIT_USERNAME/myReactApp
+    ```
+
+3. Install package dependencies for myReactApp application.
 
     ```bash
     cd /home/ubuntu/myReactApp
-    ```
-
-3. Install package dependencies for application.
-
-    ```bash
     npm install
     ```
 
