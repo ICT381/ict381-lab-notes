@@ -32,7 +32,7 @@ The main tasks for this lab are as follows:
 
 You need to generate a SSH key in the EC2 instance and add the public key (`id_rsa.pub`) to your Github account. This will allow you to clone your repositories from Github to the EC2 instance.
 
-Please refer to [Lab_0C Task 4](LAB_0C.md#exercise-4-github-ssh-keys) if you need the detailed steps.
+Please refer to [Lab_0C Task 4](../LAB_0C.md#exercise-4-github-ssh-keys) if you need the detailed steps.
 
 ## Task 3: Cloning StaycationX repository
 
