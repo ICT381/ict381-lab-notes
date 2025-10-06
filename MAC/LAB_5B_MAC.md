@@ -314,23 +314,21 @@ In the `gen-gpgkey-ubuntu.yaml` playbook, here is the summary of the tasks that 
 
 ---
 
-1. Before we run the `application1.yaml` file, you are required to do the following:
-
-2. Open the `gen-gpgkey-ubuntu.yaml` file, you can opt to do the following:
+1. Open the `gen-gpgkey-ubuntu.yaml` file, you can opt to do the following:
 
    *  We have defined the default values in the `vars` section to be used in the playbook. If you want to change it, you can do so by modifying the values in the `vars` section.
 
-3. Use the Ansible command to run the `application1.yaml` playbook.
+2. Use the Ansible command to run the `application1.yaml` playbook.
 
    ```bash
    ansible-playbook --vault-password-file=vault-pwd-file application1.yaml
    ```
-4. Ensure that you do not have any errors from the execution of the playbook.
+3. Ensure that you do not have any errors from the execution of the playbook.
 
       > **TIP**: To get a more verbose output, you can use the `-v` flag. You can use `-vv` or `-vvv` for more verbosity.
       > For example: `ansible-playbook -vv application1.yaml`.
 
-5. StaycationX and myReactApp is deployed. To verify it, open a web browser and browse to `http://EC2 IP ADDRESS`.
+4. StaycationX and myReactApp is deployed. To verify it, open a web browser and browse to `http://EC2 IP ADDRESS`.
 
     * To view myReactApp, visit `http://EC2_IP_ADDRESS`.
     * To view StaycationX, visit `http://EC2_IP_ADDRESS:5000`.
