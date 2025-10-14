@@ -103,7 +103,7 @@ The steps outlined in this section are necessary to prepare the Ansible environm
 
 4. Open the **inventory** file and insert the delivery machine EC2 IP address on line 2.
 
-   -  Open the application.yaml file
+   -  Open the inventory file
       ```bash
       nano inventory
       ```
@@ -183,7 +183,7 @@ In LAB_4C, you have manually generated the GPG key. In this lab, however, we wil
 
 ## Task 5: Storing credentials with Ansible Vault
 
-Ansible Vault is a feature within Ansible that allows users to securely store senstive data, such as passwords, API keys, and other credentials. This ensures that sensitive information is not stored in plain text within playbooks.
+Ansible Vault is a feature within Ansible that allows users to securely store sensitive data, such as passwords, API keys, and other credentials. This ensures that sensitive information is not stored in plain text within playbooks.
 
 Some of the benefits of using Ansible Vault include:
 *  **Security**: Protects sensitive information using AES256 encryption, preventing credentials from being stored in plain text across your playbooks.
@@ -314,7 +314,7 @@ In the `gen-gpgkey-ubuntu.yaml` playbook, here is the summary of the tasks that 
       > **TIP**: To get a more verbose output, you can use the `-v` flag. You can use `-vv` or `-vvv` for more verbosity.
       > For example: `ansible-playbook -vv application1.yaml`.
 
-4. StaycationX and myReactApp is deployed. To verify it, open a web browser and browse to `http://EC2 IP ADDRESS`.
+4. StaycationX and myReactApp are deployed. To verify it, open a web browser and browse to `http://EC2_IP_ADDRESS`.
 
     * To view myReactApp, visit `http://EC2_IP_ADDRESS`.
     * To view StaycationX, visit `http://EC2_IP_ADDRESS:5000`.
@@ -425,7 +425,7 @@ In the `application2.yaml` playbook, here is the summary of the tasks that will 
 * Add `jenkins` user to the `docker` group to allow it to run Docker commands without `sudo`.
 * Reboot the system for the changes to take effect.
 * Ensures both `.ssh` and `.aws` folder is available in the `jenkins` home directory.
-* Ensures that the `known_host` file exist and adds the GitHub SSH public key.
+* Ensures that the `known_hosts` file exist and adds the GitHub SSH public key.
 * Creates the `/etc/ansible` directory and an `ansible.cfg` file with settings to disable host key checking and set the number of SSH retries.
 * Clones the `juju4.gpgkey_generate` Ansible role into the jenkins user .ansible roles directory which will be used in the Jenkins pipeline when importing the `gen-gpgkey-ubuntu.yaml` playbook.
 
@@ -499,8 +499,8 @@ In this task, we will be accessing Jenkins on the browser to install the suggest
 
 Suggested Readings:
 
-1. [Ansible Tutorial for Begineers - A Step by Step Guide](https://www.ssdnodes.com/blog/step-by-step-ansible-guide/)
-2. [Ansible Tutorial for Begineers: Ultimate Playbook and Examples](https://spacelift.io/blog/ansible-tutorial)
+1. [Ansible Tutorial for Beginners - A Step by Step Guide](https://www.ssdnodes.com/blog/step-by-step-ansible-guide/)
+2. [Ansible Tutorial for Beginners: Ultimate Playbook and Examples](https://spacelift.io/blog/ansible-tutorial)
 3. [Ansible: Up and Running, 3rd Edition, Oreilly](https://learning.oreilly.com/library/view/ansible-up-and/9781098109141/)
 4. [Brief Introduction to Ansible Vault](https://www.redhat.com/en/blog/introduction-ansible-vault)
 

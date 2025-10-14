@@ -155,7 +155,7 @@ The main tasks performed by the playbook (`prod-application.yaml`) include:
 
 Configuration of SSH and AWS credentials for jenkins user
 1. Create AWS credential for the jenkins user
-2. Create SSH credental for the jenkins user
+2. Create SSH credential for the jenkins user
 3. Configuration of files needed by Ansible to run in Jenkinsfile
 
 Configuration for Jenkins
@@ -417,7 +417,7 @@ Please save and push all changes to your `automation` repository before proceedi
 
 4. If the build is successful, you should see a success message at the end of the pipeline or a green tick at the top of the page.
 
-5. Go to the web browser and navigate to `http://DEPLOYMENT_EC2_IP`. Pleae ensure that you can view the application.
+5. Go to the web browser and navigate to `http://DEPLOYMENT_EC2_IP`. Please ensure that you can view the application.
 
    ![](../images/lab5C/myreactapp-deployed-before.png)
 
