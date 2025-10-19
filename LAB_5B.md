@@ -258,6 +258,23 @@ With the benefits of Ansible Vault in mind, you will now store your GitHub PAT t
 1. Before you run the `common.yaml` file, please take note of the following:
 
    *  If you are not using the `ubuntu` username in WSL, you would need to modify the path for the last two tasks accordingly.
+   *  You would need to modify the path and owner for the last two tasks accordingly.
+  
+       ```bash
+      - name: create ansible roles folder in home directory
+        file:
+          path: ~/.ansible/roles/juju4.gpgkey_generate/
+          state: directory
+          mode: '0755'
+          owner: ubuntu
+          group: ubuntu
+
+      - name: git clone juju4 role
+        git:
+          repo: "https://github.com/imhl/ansible-gpgkey_generate.git"
+          dest: ~/.ansible/roles/juju4.gpgkey_generate
+          version: main
+      ```
 
 2. Use the ansible command to run the `common.yaml` playbook file.
 
