@@ -278,7 +278,7 @@ Create the following files with the following contents.
 
    We are creating an inventory file named `aws_ec2.yaml` where it will define the configuration that uses the Ansible dynamic inventory plugin for AWS EC2 to automatically discover and manage EC2 instances in the `us-east-1` region. It groups instances by their tags with a prefix of 'tag' and specifies the connection details using their IP addresses. This setup streamlines automation tasks and simplifies the management of AWS resources using Ansible.
 
-   For more information, you are encouraged to read up more at the [Ansible documentation](https://docs.ansible.com/ansible/latest/collections/amazon/aws/docsite/aws_ec2_guide.html#minimal-example)
+   For more information, you are encouraged to read up more from the [Ansible documentation](https://docs.ansible.com/ansible/latest/collections/amazon/aws/docsite/aws_ec2_guide.html#minimal-example).
 
 
 4. Create the `tag_group_web.yaml` file in the `/etc/ansible/group_vars` directory.
@@ -334,7 +334,7 @@ Create the following files with the following contents.
 
 ## Task 1: Adding SSH key to Jenkins to access the GitHub repository
 
-1. From the Jenkins dashboard, click on **Manage Jenkins** located on the left menu.
+1. From the Jenkins dashboard, click on **Manage Jenkins** icon located on the top right hand corner of the header bar. (It looks like a gear icon).
 
 2. Click on **Credentials** under the Security section.
 
@@ -384,7 +384,7 @@ Please save and push all changes to your `automation` repository before proceedi
 
 ## Task 4: Creating the Jenkins Pipeline
 
-1. Click on the Jenkins logo on the top left to show the Dashboard.
+1. Click on the Jenkins logo on the top left to show the dashboard.
 
 2. Click **+ New Item** on the left menu shown in the Dashboard.
 

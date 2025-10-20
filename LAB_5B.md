@@ -258,9 +258,10 @@ With the benefits of Ansible Vault in mind, you will now store your GitHub PAT t
 1. Before you run the `common.yaml` file, please take note of the following:
 
    *  If you are not using the `ubuntu` username in WSL, you would need to modify the path for the last two tasks accordingly.
-   *  You would need to modify the path and owner for the last two tasks accordingly.
+
+   *  You would need to ensure that the path, owner and group for the last two tasks is correct.
   
-       ```bash
+      ```bash
       - name: create ansible roles folder in home directory
         file:
           path: ~/.ansible/roles/juju4.gpgkey_generate/
@@ -467,7 +468,7 @@ In this task, we will be accessing Jenkins on the browser to install the suggest
 
    Replace `<EC2_PUBLIC_IP>` with the public IP address of your EC2 instance.
 
-2. You will be prompted to enter the initial admin password. Run the following command to retrieve the initial admin password.
+2. You will be prompted to enter the initial admin password. To obtain the administrator password, you would need to first SSH into the jenkins machine. After which, run the command to retrieve the initial admin password.
 
    ```bash
    sudo cat /var/lib/jenkins/secrets/initialAdminPassword
