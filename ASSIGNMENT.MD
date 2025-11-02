@@ -65,51 +65,49 @@ For Questions 2 and 3, submit your work in the GitHub repository. Additionally, 
 
 Please follow the steps below to use Microsoft Stream for recording:
 
-1. Visit [Microsoft Stream website](https://www.microsoft.com/en-sg/microsoft-365/microsoft-stream) and sign in using your SUSS credentials.
+1. Visit [Microsoft Clipchamp](https://www.microsoft.com/en-us/microsoft-365/clipchamp) and sign in by clicking on **Sign in to Clipchamp for work or school accounts**.
 
 2. On the main page, click **Screen recording**.
 
    ![](images/assignment/stream-icon.png)
 
-3. A new browser will open. Please allow access to your camera and microphone by clicking on the **Allow** button.
+3. A new browser will open. Please allow access to your microphone by clicking on the **Allow** button.
 
    ![](images/assignment/stream-camera-mic.png)
 
-4. On the bottom left, there is circle. This is the camera output. You can click on it and press the X icon to delete it.
+4. Click **Start screen recording** to start recording.
 
-   ![](images/assignment/stream-camera-icon.png)
+   ![](images/assignment/stream-start-recording.png)
 
-5. Click **Start screen recording** to start recording.
-
-6. There are three options. Please pick the one that fits you and click **Share**.
+5. There are three options. Please pick the one that fits you and click **Share**.
 
     * Chrome Tab
     * Window
     * Entire Screen
 
-7. Perfom your screen recording.
+6. Perfom your screen recording.
    
-8. Once you have completed, click on the **Stop Sharing** button.
+7. Once you have completed, click on the **Stop Sharing** button.
 
-9.  A preview of the recording is shown in the browser.
+8.  A preview of the recording is shown in the browser.
 
-10. Click **Finish** button to save the recording.
+9. Click **Finish** button to save the recording.
 
-11. At the top menu bar, click on the **Share** button.
+10. At the top menu bar, click on the **Share** button and click **Share**.
 
-12. Add your instructor name into the box and click **Copy link**.
+11. Add your instructor name into the box and click **Copy link**.
 
     Sample screenshot:
 
     ![](images/assignment/stream-share-perm.png)
 
-13. You should see the success message.
+12. You should see the success message.
 
     ![](images/assignment/stream-share-perm-success.png)
 
-14. Close the prompt box.
+13. Close the prompt box.
 
-15. Place the recording link into the `README` file.
+14. Place the recording link into the `README` file.
 
 
 ## Assignment Deadlines
