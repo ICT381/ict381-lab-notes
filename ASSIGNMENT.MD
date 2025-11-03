@@ -61,9 +61,9 @@ We will continue to use the GitHub repositories from TMA.
 
 Please submit your work for Questions 1 and 4 in a Word document on Canvas T group **ECA** assignment.
 
-For Questions 2 and 3, submit your work in the GitHub repository. Additionally, for question 3, record the program run using **Microsoft Stream**, share the recording, and place the recording link in your GitHub repository README file.
+For Questions 2 and 3, submit your work in the GitHub repository. Additionally, for question 3, record the program run using **Microsoft Clipchamp**, share the recording, and place the recording link in your GitHub repository README file.
 
-Please follow the steps below to use Microsoft Stream for recording:
+Please follow the steps below to use Microsoft Clipchamp for recording:
 
 1. Visit [Microsoft Clipchamp](https://www.microsoft.com/en-us/microsoft-365/clipchamp) and sign in by clicking on **Sign in to Clipchamp for work or school accounts**.
 
