@@ -127,7 +127,7 @@ Once the repositories are published, you will be able to access them.
 
 5. Click on the **Code** button and click **SSH**.
 
-   Sample Screenshot for StaycationX repo:
+   Sample Screenshot for TMA frontend repo:
 
    ![](images/lab0E/classmoji-clone-personal-repo.png)
 
