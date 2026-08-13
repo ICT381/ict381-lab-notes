@@ -15,8 +15,6 @@ course_repo_list=(
     "ict381/StaycationX"
     "ict381/automation"
     "ict381/myReactApp"
-    "ict381/JS_NOTEBOOK"
-    "ict381/ReactTutorial"
 )
 
 # Validate GIT_USERNAME has been set
