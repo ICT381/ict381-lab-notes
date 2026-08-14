@@ -1,102 +1,40 @@
-# Lab - Jira
+# Lab - GitHub Project
 
-## Task 1: Creating Jira account
+## Task 1: Create a GitHub project
 
-1. Navigate to [https://www.atlassian.com/software/jira](https://www.atlassian.com/software/jira)
+1. Open a repository.
+2. Click `Projects` in the top navigation bar.
+3. Click `New project` to create a new empty project associated with the current repository.
+4. Select the `Feature release` template, which helps you manage your team's work items, plan upcoming cycles, and understand team capacity.
+5. Name the project.
+6. Check `Import items from repository`.
 
-2. Enter your SUSS email address and click **Sign up**.
+## Task 2: Create an item
 
-   ![](images/lab2A/jira-signup.png)
+1. Click `Add item` in the last row of the backlog.
+2. Enter a title.
+3. Add a description.
+4. For the newly added item, select it and then click `+` to add a child item.
+5. Go back to the repository view and click `Issues`. Each item in the backlog corresponds to an issue in your repository.
 
-   > NOTE: DO NOT click on the Microsoft button to create your Jira account.
+## Task 3: Add a new field
 
-3. Check your email inbox for the **OTP code** from Atlassian, then enter it on the website.
+1. Scroll all the way to the rightmost field.
+2. Click `+`.
+3. Click `Add field`.
+4. Click `Create a project field` to create a new field.
+5. Name the field.
+6. Select a field type.
 
-   ![](images/lab2A/jira-otp.png)
+## Task 4: Update the backlog view
 
-4. After successful verification of the code, you should see the green successful message.
+1. Click `View`.
+2. Select the fields to display.
+3. Change the `Group by` setting.
 
-   ![](images/lab2A/email-verify-success.png)
+The behavior is similar to writing a SQL statement using `SELECT`, `GROUP BY`, and `ORDER BY`:
 
-5. On **Add your account details** page, enter your `full name` and `password`.
-
-6. Click **Continue** to proceed.
-
-7. On the **Create a site** page, enter a **name** for your site.
-
-   ![](images/lab2A/create-jira-site.png)
-
-8. Click **Continue** to proceed.
-
-9. On **What kind of work do you do?** page, select **Software development** and click **Continue**.
-
-    ![](images/lab2A/select-jira-work.png)
-
-10. On **How does your team plan to use Jira** page, click **Continue**.
-
-    ![](images/lab2A/select-jira-continue.png)
-
-
-11. On **Name your first project** page, enter a **name** for your project and click **Get Started**.
-
-    ![](images/lab2A/jira-welcome-page.png)
-
-
-12. On **What types of work do you need** page, leave the default options selected and click **Next**.
-
-    ![](images/lab2A/jira-work-types.png)
-
-
-13. On **How do you track work?** page, leave the default options selected and click **Finish**.
-
-    ![](images/lab2A/jira-track-work.png)
-
-
-## Task 2: Cleaning up sample data
-
-You will notice that the project you created has some sample data in it. You will need to clean up the sample data before proceeding.
-
-1. Click on the **List** icon on the menu bar.
-
-   ![](images/lab2A/jira-click-list.png)
-
-2. Click on the checkbox in the first column and click **Delete**.
-
-   ![](images/lab2A/jira-project-task-delete.png)
-
-3. Repeat the previous step until the list is empty.
-
-   ![](images/lab2A/empty-project.png)
-
-## Task 3: Invite your team members and instructor
-
-1. Click on **More actions** button (three dots).
-
-   ![](images/lab2A/jira-more-actions.png)
-
-2. Click on **Add people** button.
-
-   ![](images/lab2A/jira-add-people-button.png)
-
-3. Under **Add people to Project** prompt, enter the email address of your team members and instructor.
-
-   ![](images/lab2A/jira-add-people.png)
-
-   > NOTE: Do not use the Microsoft button to add your team members email address.
-
-4. Click on the **Add** button.
-
-5. A message is displayed to show that the user has been added to the project.
-
-   ![](images/lab2A/jira-invite-sent.png)
-
-6. The added user will receive an email invitation to join the Jira project. Team members should check their inbox and accept the invitation.
-
-#### NOTE: The team leader should add the instructor email address so that the instructor can access the project for grading purposes.
-
-## Task 4: Practice
-
-#### Please refer to your study guide to complete the rest of the exercises.
+`SELECT fields GROUP BY fields ORDER BY fields`
 
 ---
 
