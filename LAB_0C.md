@@ -54,7 +54,7 @@ Learn how to create new repositories on the GitHub website.
 5. Set visibility to **Private**.
 6. Select **Create repository**.
 
-Create the following five empty repositories:
+Create the following three empty repositories:
 
 - StaycationX
 - automation
