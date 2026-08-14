@@ -59,8 +59,6 @@ Create the following five empty repositories:
 - StaycationX
 - automation
 - myReactApp
-- ReactTutorial
-- JS_NOTEBOOK
 
 ## Task 4: Set up GitHub SSH keys
 
