@@ -494,8 +494,8 @@ Error: strict mode violation ... resolved to 0 elements
   waiting for get_by_role("row").filter(has_text="Capella Singapore")
 ```
 
-Zero rows now. **Your first run deleted that booking.** The test did precisely what you told it to,
-both times - but the second run started from the world the first run left behind.
+Zero rows now. **Your previous runs deleted that booking.** The test did precisely what you told it to,
+both times - but the last run started from the world the previous runs left behind.
 
 This is the thing that makes system tests different from the tests you have written before. Nothing is
 faked, so nothing is undone for you. Your test drives the real application, which calls the real API,
@@ -555,10 +555,7 @@ def test_sign_in_lists_the_packages(signed_in):
 ```
 
 Everything **before** `yield` is setup. Everything **after** is cleanup, and it runs even when the test
-fails. Naming `signed_in` as an argument is all the wiring there is - there is nothing to register.
-
-`pytest` already had fixtures like this, by the way. Open `tests/conftest.py` in this repository and
-you will find the same three ideas: a `yield`, a scope, and one fixture taking another as an argument.
+fails.
 
 ### Step 4 - Two people at once
 
@@ -573,10 +570,7 @@ def test_two_people(browser):
 
 Two contexts are two completely independent sessions, in one test.
 
-> Playwright can also save a signed-in session to a file and replay it, so tests skip the login form.
-> This tutorial always signs in through the screen, because signing in is one of the things worth
-> testing. In this app it would not help anyway - the token is only held in memory, so there is
-> nothing on disk to save.
+> Playwright can also save a signed-in session to a file and replay it, so tests skip the login form. This tutorial always signs in through the screen, because signing in is one of the things worth testing. In this app it would not help anyway - the token is only held in memory, so there is nothing on disk to save.
 
 ### Part 4 recap
 
@@ -623,6 +617,7 @@ description, so the screen does not even have to exist yet.
 In `conftest.py`:
 
 ```python
+sys.path.insert(0, str(Path(__file__).parent / "playwright"))
 from pages import SignInPage
 
 
@@ -661,7 +656,7 @@ class BookingsPage:
         self.page = page
 
     def row(self, hotel):
-        return self.page.get_by_role("row").filter(has_text=hotel)
+        return self.page.get_by_role("row").filter(has_text=hotel).nth(0)
 
     def delete(self, hotel):
         self.row(hotel).get_by_role("button", name="Delete").click()
@@ -671,18 +666,12 @@ Now a test just says `bookings.delete("Capella Singapore")`.
 
 ### Something to decide for yourself
 
-Should a page object contain `expect(...)` checks, or only offer actions and leave the checking to the
-test?
-
-Both are defensible. Checks kept next to the screen knowledge stay correct when the screen changes.
-But a test whose assertions are hidden in another file no longer tells you what it proves. Pick one
-and be consistent.
+Should a page object contain `expect(...)` checks, or only offer actions and leave the checking to the test?
 
 ### Part 5 recap
 
-1. One screen, one owner.
-2. Locators are attributes; actions are methods.
-3. A test should read like the behaviour, not like the HTML.
+1. One screen, one class.
+2. A test should read like the behaviour, not like the HTML.
 
 ---
 
@@ -699,30 +688,21 @@ pytest tests/playwright --base-url http://localhost:3000
 
 ### Make it faster, and watch it break
 
-System tests are the slowest tests you will write - they are running an entire application. The
-obvious fix is to run them at the same time:
+System tests are the slowest tests you will write - they are running an entire application. The obvious fix is to run them at the same time:
 
 ```bash
 pip install pytest-xdist
-pytest tests/playwright -n auto
+pytest tests/playwright --base-url http://localhost:3000 -n auto
 ```
 
-```
-2 failed, 1 passed
-```
-
-The workers started fine. Then they raced each other for the same bookings in the same database.
-
-Remember the diagram from Part 4: **the browser context is isolated, the database is not.** Whether
-your suite can run in parallel is a question about what your tests *write*, not about how fast your
-machine is. Tests that only read can run in parallel all day.
+Remember the diagram from Part 4: **the browser context is isolated, the database is not.** Whether your suite can run in parallel is a question about what your tests *write*, not about how fast your machine is. Tests that only read can run in parallel all day.
 
 ### Reading a failure you did not watch
 
 The worst failures are the ones that happen when nobody is looking. Turn on tracing:
 
 ```bash
-pytest tests/playwright --tracing retain-on-failure
+pytest tests/playwright --base-url http://localhost:3000 --tracing retain-on-failure
 playwright show-trace test-results/.../trace.zip
 ```
 
@@ -733,7 +713,7 @@ into something you can actually read.
 Also useful:
 
 ```bash
-pytest tests/playwright --screenshot only-on-failure --video retain-on-failure
+pytest tests/playwright --base-url http://localhost:3000 --screenshot only-on-failure --video retain-on-failure
 
 playwright codegen http://localhost:3000    # records your clicks as code
 ```
@@ -742,14 +722,12 @@ playwright codegen http://localhost:3000    # records your clicks as code
 page.pause()      # put this in a test to open Playwright's inspector
 ```
 
-`codegen` is a good way to get a first draft, but read what it writes. It tends to pick locators from
-the markup - the middle of the table in Part 2, not the bottom.
+`codegen` is a good way to get a first draft, but read what it writes. It tends to pick locators from the markup—the ones in the middle of the table in Part 2—rather than the recommended ones at the bottom.
 
 ### Part 6 recap
 
-1. The browser context is isolated; the database is not.
-2. Turn tracing on before you need it.
-3. `codegen` writes a first draft. You still choose the locators.
+1. Turn tracing on when you need to debug.
+2. `codegen` writes a first draft. You still choose the locators.
 
 ---
 
@@ -767,8 +745,8 @@ playwright install chromium
 # running
 export PYTHONPATH=.
 pytest tests/playwright --base-url http://localhost:3000
-pytest tests/playwright --headed --slowmo 500
-pytest tests/playwright --tracing retain-on-failure
+pytest tests/playwright --base-url http://localhost:3000 --headed --slowmo 500
+pytest tests/playwright --base-url http://localhost:3000 --tracing retain-on-failure
 playwright show-trace test-results/.../trace.zip
 ```
 
