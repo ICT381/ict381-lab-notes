@@ -256,7 +256,7 @@ def test_delete_a_booking(page: Page):
 ```
 Error: strict mode violation:
   get_by_role("button", name="Delete")
-  resolved to 9 elements:
+  resolved to 11 elements:
     1) <button class="btn btn-primary">Delete</button>
     2) <button class="btn btn-primary">Delete</button>
     3) <button class="btn btn-primary">Delete</button>
