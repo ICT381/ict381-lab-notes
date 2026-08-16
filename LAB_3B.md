@@ -408,7 +408,7 @@ It fails. Run it again - it fails again. This is not flakiness; it fails **every
 Nothing about the application changed. The only difference is that `is_visible()` asks once,
 straight away, and gets an honest answer: *no, not yet*.
 
-### Why - two requests, and no new page
+### Why - two requests, and no new page in a single-page web application
 
 Here is what actually happens when you click Login:
 
@@ -423,12 +423,7 @@ click Login
 the address bar:  /STX  .....................  /STX
 ```
 
-**Two round trips to the API, and the browser never loaded a new page.** The address never changed.
-Nothing "finished loading", because nothing was loading in the traditional sense - React simply
-redrew part of the screen once the data arrived.
-
-So there is no page-load event to wait for. The only honest signal that the step is done is the thing
-you were waiting for actually appearing.
+**Two round trips to the API, and the browser never loaded a new page.** React simply redrew part of the screen once the data arrived. So there is no page-load event to wait for. The only honest signal that the step is done is the thing you were waiting for actually appearing.
 
 ### Step 3 - Put it back, and add another check
 
@@ -440,8 +435,7 @@ you were waiting for actually appearing.
 `expect()` is the wait. It checks, and if the answer is no it waits a moment and checks again, until
 it passes or about five seconds have gone by. `assert` takes a single snapshot.
 
-> The seeded database has 6 packages. If your count is different, use the number you actually see -
-> and then ask yourself why it differs.
+> The seeded database has 6 packages. If your count is different, use the number you actually see.
 
 ### You are already getting a lot of waiting for free
 
@@ -462,10 +456,7 @@ waits than you might expect.
 page.wait_for_timeout(1000)     # ← don't
 ```
 
-This is a plain one-second sleep with a Playwright name on it. It is the trap, because it *looks*
-official. But it waits on a clock, not on the page: too short and your test fails on a slow machine,
-too long and your suite crawls. Whatever you were about to sleep for, there is a condition you can
-wait for instead.
+This is a plain one-second sleep with a Playwright name on it. It is the trap, because it *looks* official. But it waits on a clock, not on the page: too short and your test fails on a slow machine, too long and your suite crawls. Whatever you were about to sleep for, there is a condition you can wait for instead.
 
 ### Part 3 recap
 
