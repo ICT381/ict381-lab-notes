@@ -207,15 +207,6 @@ Please note that there is no need for you to install python pip and virtual envi
 
    ![](../images/lab0A_MAC/nginx-home-page.png)
 
-
-## Task 11: Installing Geckodriver
-
-1. Enter the following command in **Terminal** to install Geckodriver.
-
-   ```bash
-   brew install geckodriver
-   ```
-
 ---
 
 ## 🎉 Congratulations!
