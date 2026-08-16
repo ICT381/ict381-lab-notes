@@ -304,8 +304,6 @@ works: `row.get_by_role(...)` means "search inside whatever that row turns out t
 
 ### Choosing what to find things by
 
-Every way of finding an element ties your test to something. Pick what you want to be tied to:
-
 | How you find it | Tied to | Breaks when |
 |---|---|---|
 | `.nth(3)` | position | the order changes |
