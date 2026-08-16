@@ -302,9 +302,6 @@ Playwright calls this a **locator**. It is re-evaluated every single time you us
 still works after the page has re-rendered and thrown away the old elements. It is also why chaining
 works: `row.get_by_role(...)` means "search inside whatever that row turns out to be".
 
-You could also have written `.nth(0)`, `.first` or `.last`. They work - but `.nth(0)` breaks the day
-your data comes back in a different order, and it never says what you actually meant.
-
 ### Choosing what to find things by
 
 Every way of finding an element ties your test to something. Pick what you want to be tied to:
