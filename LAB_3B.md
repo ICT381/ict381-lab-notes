@@ -268,15 +268,14 @@ Error: strict mode violation:
 The bookings table has one row per booking, and **every row has its own Delete button**. You asked for
 "the Delete button" and there are multiple of them.
 
-Playwright stopped instead of picking one. That is on purpose. A tool that silently clicked the first
-match would hand you a test that passes today and deletes the wrong booking next month.
+Playwright stopped instead of picking one. That is on purpose in Playwright strict mode.
 
 ### Step 3 - Say which one you mean
 
 Find the row first, then find the button inside it:
 
 ```python
-    row = page.get_by_role("row").filter(has_text="Capella Singapore")
+    row = page.get_by_role("row").filter(has_text="Capella Singapore").nth(0)
     row.get_by_role("button", name="Delete").click()
 ```
 
