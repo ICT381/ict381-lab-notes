@@ -481,7 +481,7 @@ pytest tests/playwright --base-url http://localhost:3000
 2 passed
 ```
 
-Now run exactly the same command a second time:
+Now run exactly the same command one more time:
 
 ```
 1 failed
