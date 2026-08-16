@@ -268,7 +268,7 @@ Error: strict mode violation:
 The bookings table has one row per booking, and **every row has its own Delete button**. You asked for
 "the Delete button" and there are multiple of them.
 
-Playwright stopped instead of picking one. That is on purpose in Playwright strict mode.
+Playwright stopped instead of picking one. That is intentional in Playwright's strict mode.
 
 ### Step 3 - Say which one you mean
 
