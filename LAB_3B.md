@@ -266,7 +266,7 @@ Error: strict mode violation:
 *(The number depends on how many bookings your seeded user has.)*
 
 The bookings table has one row per booking, and **every row has its own Delete button**. You asked for
-"the Delete button" and there are nine of them.
+"the Delete button" and there are multiple of them.
 
 Playwright stopped instead of picking one. That is on purpose. A tool that silently clicked the first
 match would hand you a test that passes today and deletes the wrong booking next month.
