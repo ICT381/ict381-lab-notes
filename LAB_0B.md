@@ -33,19 +33,17 @@ Please visit the [ALS guide](ALS_GUIDE.md) for detailed instructions.
 
 Below are the summarized steps:
 
-1. Navigate to your Canvas ICT381 **L01** [course site](https://canvas.suss.edu.sg/courses/92321/external_tools/6802).
+1. Access [Azure Lab Services](https://labs.azure.com).
 
-2. On the left menu, click on **Azure Lab Services**.
+2. Upon successful login, you will be able to see your assigned virtual machine.
 
-3. You will be able to see your assigned virtual machine.
-
-4. To start your virtual machine, toggle the switch to turn on the machine.
+3. To start your virtual machine, toggle the switch to turn on the machine.
 
    > NOTE: If you are not using your virtual machine, please toggle the switch to turn off the virtual machine so that you will not waste your user quota hours.
 
-5. When the virtual machine is turned on, click on the *blue desktop icon* to download the RDP file.
+4. When the virtual machine is turned on, click on the *blue desktop icon* to download the RDP file.
 
-6. (FOR MAC Users), please download and install **Windows App** application from Apple App Store first before proceeding.
+5. (FOR MAC Users), please download and install **Windows App** application from Apple App Store first before proceeding.
 
 6. Double click on the RDP file and key in the credentials to login to the virtual machine.
 
