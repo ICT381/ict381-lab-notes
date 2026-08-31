@@ -123,6 +123,10 @@ Before running it:
 
 1. Set `GIT_USERNAME` in the script (Line 11).
 2. Set `DEST_DIR` in the script if you want a custom clone location. By default, it is set to your home directory.
+3. Make the script as an executable by running:
+   ```bash
+   chmod +x mirror-repo.sh
+   ```
 
 Run:
 
