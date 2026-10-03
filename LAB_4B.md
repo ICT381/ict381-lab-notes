@@ -59,7 +59,7 @@ For detailed steps, refer to [Lab_0C Task 4](./eLAB_0C.md#exercise-4-github-ssh-
 
     ```bash
     cd /home/ubuntu/StaycationX
-    python3 -m venv venv
+    python3.11 -m venv venv
     ```
 
 2. Activate the virtual environment and install dependencies.
