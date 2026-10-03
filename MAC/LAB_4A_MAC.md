@@ -154,7 +154,12 @@ To begin with the installation, please enter the following commands in the termi
 
 ```bash
 sudo apt-get update
-sudo apt-get install -y python3-pip python3-venv
+sudo apt-get install -y software-properties-common
+
+sudo add-apt-repository -y ppa:deadsnakes/ppa
+sudo apt-get update
+
+sudo apt-get install -y python3.11 python3.11-venv python3.11-dev
 ```
 
 ### Install MongoDB Community Edition
